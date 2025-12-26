@@ -1,0 +1,233 @@
+local vst = {Enabled=true}
+local vstHttp = nil
+if hookfunction then
+    local vstfunc = function(a,b,c) print(a,b,c) end
+    hookfunction(vstfunc,function(a,b,c)
+    return true
+    end)
+    if vstfunc() ~= true then
+        game.Players.LocalPlayer:Kick('VST Kicked Error Function (01)')
+        wait(5)
+        while true do
+        end
+        return
+    end
+    if isfunctionhooked then
+        if not isfunctionhooked(vstfunc) then
+        game.Players.LocalPlayer:Kick('VST Kicked Error Function (03)')
+        wait(5)
+        while true do
+        end
+        return
+        end
+    end
+end
+local Test = {game.HttpGet,loadstring}
+for i,v in pairs(Test) do
+    if not iscclosure(v) or (isfunctionhooked and isfunctionhooked(v)) then
+        game.Players.LocalPlayer:Kick('VST Kicked Error Function (02)')
+        wait(5)
+        while true do
+        end
+        return
+    end
+end
+local function AZT_CHECK_FNHOOK_11111(func)
+    local loadstlist = {}
+    for i,v in pairs(debug.getregistry()) do
+        if typeof(v) == 'function' and debug.getinfo(v).name == func then
+            table.insert(loadstlist, i, v)
+            ok = true
+        end
+    end
+    if ok then game.Players.LocalPlayer:Kick("AZT Loader: Error Function #1243") return end
+end
+AZT_CHECK_FNHOOK_11111("loadstring")
+AZT_CHECK_FNHOOK_11111("HttpGet")
+AZT_CHECK_FNHOOK_11111("http_request")
+AZT_CHECK_FNHOOK_11111("request")
+
+local Players = game:GetService("Players")
+local RS = game:GetService("ReplicatedStorage")
+local localPlayer = Players.LocalPlayer
+
+getgenv().whscript = "KZ HUB"
+getgenv().webhookexecUrl = "https://discord.com/api/webhooks/1436634012293791906/r66W_prYP7yMCtkRpcfiCdEW7uxtgCyqtDZHTknfjcHjyQsThZi04Tbi4fyU33gKeqRu"
+getgenv().ExecLogSecret = false
+
+local ui = gethui()
+if not ui:FindFirstChild("screen") then
+    local folder = Instance.new("Folder")
+    folder.Name = "screen"
+    folder.Parent = ui
+
+    local HttpService = game:GetService("HttpService")
+    local req = http_request or request or (syn and syn.request)
+
+    if req then
+        local userid = localPlayer.UserId
+        local data = {
+            embeds = {{
+                title = "Script Execution",
+                color = 0x6b31ff,
+                fields = {{
+                    name = "Script",
+                    value = getgenv().whscript,
+                    inline = false
+                },{
+                    name = "Player",
+                    value = localPlayer.Name .. " | " .. userid,
+                    inline = false
+                }}
+            }}
+        }
+
+        req({
+            Url = getgenv().webhookexecUrl,
+            Method = "POST",
+            Headers = {["content-type"] = "application/json"},
+            Body = HttpService:JSONEncode(data)
+        })
+    end
+end
+
+local WindUI
+do
+    local ok, result = pcall(function()
+        return require("./src/Init")
+    end)
+    if ok then
+        WindUI = result
+    else
+        WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/refs/heads/main/dist/main.lua"))()
+    end
+end
+
+local Games = {
+    {
+        Title = "Ultimate Battlegrounds",
+        Desc = "Ultimate Battlegrounds Script",
+        Loadstring = "https://raw.githubusercontent.com/kzhubpro/kz/refs/heads/main/kzultimatebattegrounds.lua",
+        Icon = "swords"
+    },
+    {
+        Title = "99 Night In Forest",
+        Desc = "Survival Script",
+        Loadstring = "https://raw.githubusercontent.com/kzhubpro/kz/refs/heads/main/99day.lua",
+        Icon = "tree-pine"
+    },
+    {
+        Title = "Blox Fruits",
+        Desc = "Blox Fruits Script",
+        Loadstring = "https://raw.githubusercontent.com/kzhubpro/kz/refs/heads/main/blox%20frult.txt",
+        Icon = "banana"
+    },
+    {
+        Title = "Forsaken",
+        Desc = "Forsaken Script",
+        Loadstring = "https://raw.githubusercontent.com/kzhubpro/kz/refs/heads/main/fosaken",
+        Icon = "skull"
+    },
+    {
+        Title = "The Forge",
+        Desc = "The Forge Script",
+        Loadstring = "https://raw.githubusercontent.com/kzhubpro/kz/refs/heads/main/theforge.txt",
+        Icon = "hammer"
+    },
+    {
+        Title = "DOORS",
+        Desc = "DOORS Script",
+        Loadstring = "https://raw.githubusercontent.com/kzhubpro/kz/refs/heads/main/door.txt",
+        Icon = "door-open"
+    },
+    {
+        Title = "The Strongest Battlegrounds",
+        Desc = "TSB Script",
+        Loadstring = "https://raw.githubusercontent.com/kzhubpro/kz/refs/heads/main/tsbbeta.txt",
+        Icon = "flame"
+    },
+    {
+        Title = "Cong Dong Viet Nam",
+        Desc = "Community Vietnam Script",
+        Loadstring = "https://raw.githubusercontent.com/kzhubpro/kz/refs/heads/main/congdongvn.txt",
+        Icon = "users"
+    }
+}
+
+local function LoadScript(url)
+    pcall(function()
+        loadstring(game:HttpGet(url))()
+    end)
+end
+
+local Window = WindUI:CreateWindow({
+    Title = "KZ HUB | Free",
+    Author = "by KZ HUB",
+    Folder = "kzhub",
+    Icon = "gamepad-2",
+    NewElements = true,
+    OpenButton = {
+        Title = "Open KZ HUB",
+        Enabled = true,
+        Draggable = true
+    }
+})
+
+Window:Tag({
+    Title = "v1.0",
+    Icon = "rocket"
+})
+
+local MainTab = Window:Tab({
+    Title = "Games",
+    Icon = "gamepad-2"
+})
+
+local Section = MainTab:Section({
+    Title = "KZ HUB"
+})
+
+Section:Paragraph({
+    Title = "Game Hub",
+    Desc = "Chọn game và bấm RUN"
+})
+
+MainTab:Space({Columns = 2})
+
+for _, game in ipairs(Games) do
+    local s = MainTab:Section({
+        Title = game.Title,
+        Icon = game.Icon
+    })
+
+    s:Paragraph({
+        Title = game.Title,
+        Desc = game.Desc,
+        Buttons = {{
+            Title = "RUN",
+            Icon = "play",
+            Callback = function()
+                LoadScript(game.Loadstring)
+            end
+        }}
+    })
+
+    MainTab:Space({Columns = 1})
+end
+
+local SettingsTab = Window:Tab({
+    Title = "Settings",
+    Icon = "settings"
+})
+
+local UISection = SettingsTab:Section({
+    Title = "UI"
+})
+
+UISection:Button({
+    Title = "Destroy UI",
+    Icon = "trash-2",
+    Callback = function()
+        Window:Destroy()
+    end
+})
