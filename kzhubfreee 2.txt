@@ -1,3 +1,52 @@
+local vst = {Enabled=true}
+local vstHttp = nil
+if hookfunction then
+    local vstfunc = function(a,b,c) print(a,b,c) end
+    hookfunction(vstfunc,function(a,b,c)
+    return true
+    end)
+    if vstfunc() ~= true then
+        game.Players.LocalPlayer:Kick('VST Kicked Error Function (01)')
+        wait(5)
+        while true do
+        end
+        return
+    end
+    if isfunctionhooked then
+        if not isfunctionhooked(vstfunc) then
+        game.Players.LocalPlayer:Kick('VST Kicked Error Function (03)')
+        wait(5)
+        while true do
+        end
+        return
+        end
+    end
+end
+local Test = {game.HttpGet,loadstring}
+for i,v in pairs(Test) do
+    if not iscclosure(v) or (isfunctionhooked and isfunctionhooked(v)) then
+        game.Players.LocalPlayer:Kick('VST Kicked Error Function (02)')
+        wait(5)
+        while true do
+        end
+        return
+    end
+end
+local function AZT_CHECK_FNHOOK_11111(func)
+    local loadstlist = {}
+    for i,v in pairs(debug.getregistry()) do
+        if typeof(v) == 'function' and debug.getinfo(v).name == func then
+            table.insert(loadstlist, i, v)
+            ok = true
+        end
+    end
+    if ok then game.Players.LocalPlayer:Kick("AZT Loader: Error Function #1243") return end
+end
+AZT_CHECK_FNHOOK_11111("loadstring")
+AZT_CHECK_FNHOOK_11111("HttpGet")
+AZT_CHECK_FNHOOK_11111("http_request")
+AZT_CHECK_FNHOOK_11111("request")
+
 local Players = game:GetService("Players")
 local RS = game:GetService("ReplicatedStorage")
 local localPlayer = Players.LocalPlayer
