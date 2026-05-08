@@ -3729,13 +3729,13 @@ function CheckItemBPCRBPCR(v463)
 end
 local vu32 = loadstring(game:HttpGet("https://pastefy.app/5bk02Q6b/raw"))();
 local v466 = vu32:MakeWindow({
-    Title = "KZ HUB 1.0.0",
-    SubTitle = "By Lemon☑️",
-    SaveFolder = "KzOnTop1 | KZ lib v5.lua"
+    Title = "Cryonix 1.0.0",
+    SubTitle = "By Cryonix Development☑️",
+    SaveFolder = "Cryonix OnTop | Cryonix lib v5.lua"
 })
 
 v466:AddMinimizeButton({
-    Button = { Image = "rbxassetid://72712527886064", BackgroundTransparency = 1},
+    Button = { Image = "rbxassetid://92157524805425", BackgroundTransparency = 1},
     Size = UDim2.new(0, 40, 0, 40),
     Corner = { CornerRadius = UDim.new(0.5, 0) },
 })
@@ -3754,9 +3754,9 @@ local v495 = v466:MakeTab({"Shop", "shoppingCart"})
 local v496 = v466:MakeTab({"Misc", "settings"})
 
 v484:AddDiscordInvite({
-    Name = "KZonTop | Official Sever",
+    Name = "Cryonix | Official Sever",
     Description = "Come In To Receive The Soonest Notification",
-    Logo = "rbxassetid://72712527886064",
+    Logo = "rbxassetid://92157524805425",
     Invite = "https://discord.gg/UGNFJHNkvb"
 })
 v484:AddParagraph({
